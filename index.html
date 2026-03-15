@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Linked by Words · Suhas Sajjan · Ghostwriter for Productivity Coaches</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --green-50:  #E1F5EE;
+      --green-100: #9FE1CB;
+      --green-400: #1D9E75;
+      --green-600: #0F6E56;
+      --green-800: #085041;
+      --green-900: #04342C;
+      --red-400: #E24B4A;
+      --text-primary: #1a1a1a;
+      --text-secondary: #5a5a5a;
+      --bg: #ffffff;
+      --bg-surface: #f7f7f5;
+      --border: rgba(0,0,0,0.1);
+      --radius-md: 8px;
+      --radius-lg: 12px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 2rem;
+    }
+    .nav-inner {
+      max-width: 900px; margin: 0 auto;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 60px;
+    }
+    .nav-brand {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 14px; font-weight: 500; color: var(--text-primary);
+      text-decoration: none;
+    }
+    .nav-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green-400); }
+    .nav-cta {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: var(--green-400); color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px; font-weight: 500;
+      padding: 9px 18px; border-radius: 4px;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: background 0.18s;
+    }
+    .nav-cta:hover { background: var(--green-600); }
+
+    /* WRAPPER */
+    .wrapper { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+    /* HERO */
+    .hero {
+      padding: 5rem 0 4rem;
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 3rem;
+      align-items: center;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .hero-eyebrow {
+      font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+      font-weight: 500; color: var(--text-secondary); margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.2rem, 4.5vw, 3.2rem);
+      line-height: 1.15; font-weight: 700;
+      color: var(--text-primary); margin-bottom: 1.25rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--green-400); }
+    .hero-sub {
+      font-size: 16px; color: var(--text-secondary);
+      line-height: 1.75; margin-bottom: 2rem; font-weight: 300;
+    }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-400); color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 500;
+      padding: 14px 28px; border-radius: 4px;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: background 0.18s;
+    }
+    .btn-primary:hover { background: var(--green-600); }
+    .hero-note {
+      display: block; font-size: 12px;
+      color: var(--text-secondary); margin-top: 0.75rem;
+    }
+
+    /* SERVICE PILLS */
+    .hero-services { display: flex; flex-direction: column; gap: 12px; }
+    .service-pill {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--bg-surface);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 14px 18px;
+      position: relative; overflow: hidden;
+    }
+    .service-pill::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 3px;
+      background: var(--green-400);
+    }
+    .sp-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--green-50);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .sp-label { font-size: 14px; font-weight: 500; color: var(--text-primary); }
+    .sp-sub { font-size: 12px; font-weight: 300; color: var(--text-secondary); display: block; margin-top: 2px; }
+
+    /* SECTIONS */
+    section { padding: 4rem 0; border-bottom: 0.5px solid var(--border); }
+    .section-label {
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      font-weight: 500; color: var(--green-400); margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2.1rem);
+      font-weight: 700; line-height: 1.22;
+      margin-bottom: 0.6rem;
+    }
+    .section-desc {
+      font-size: 15px; color: var(--text-secondary);
+      line-height: 1.75; font-weight: 300;
+      max-width: 580px; margin-bottom: 2.25rem;
+    }
+
+    /* PAIN / GAIN */
+    .pain-gain { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .pain-card, .gain-card {
+      border-radius: var(--radius-lg);
+      border: 0.5px solid var(--border);
+      padding: 1.5rem;
+      background: var(--bg-surface);
+    }
+    .pain-card .pg-heading { font-size: 12px; font-weight: 500; color: var(--red-400); margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .gain-card .pg-heading { font-size: 12px; font-weight: 500; color: var(--green-600); margin-bottom: 1rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .pg-row { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 12px; font-size: 14px; line-height: 1.55; color: var(--text-secondary); }
+    .pg-icon { flex-shrink: 0; margin-top: 1px; font-size: 14px; }
+
+    /* SERVICES */
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .svc-card {
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      background: var(--bg);
+      transition: border-color 0.18s, box-shadow 0.18s;
+    }
+    .svc-card:hover {
+      border-color: var(--green-100);
+      box-shadow: 0 4px 20px rgba(29,158,117,0.08);
+    }
+    .svc-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem; font-weight: 700;
+      color: var(--green-100); line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .svc-name { font-size: 15px; font-weight: 500; margin-bottom: 6px; }
+    .svc-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.65; font-weight: 300; }
+
+    /* PROCESS */
+    .steps { display: flex; flex-direction: column; }
+    .step {
+      display: grid; grid-template-columns: 52px 1fr; gap: 1.5rem;
+      padding: 1.5rem 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .step:last-child { border-bottom: none; }
+    .step-num {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--green-50);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 17px; font-weight: 700; color: var(--green-600);
+      flex-shrink: 0;
+    }
+    .step-title { font-size: 15px; font-weight: 500; margin-bottom: 4px; }
+    .step-desc { font-size: 14px; color: var(--text-secondary); line-height: 1.65; font-weight: 300; }
+
+    /* ABOUT */
+    .about-inner { display: grid; grid-template-columns: auto 1fr; gap: 2rem; align-items: start; }
+    .avatar {
+      width: 88px; height: 88px; border-radius: 50%;
+      background: var(--green-400);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: #fff; flex-shrink: 0;
+    }
+    .about-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700; margin-bottom: 4px;
+    }
+    .about-role { font-size: 13px; color: var(--green-400); font-weight: 500; margin-bottom: 1rem; }
+    .about-bio { font-size: 14px; color: var(--text-secondary); line-height: 1.75; font-weight: 300; }
+
+    /* CTA BOX */
+    .cta-box {
+      background: var(--green-50);
+      border: 0.5px solid var(--green-100);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 2.5rem;
+      text-align: center;
+      margin: 4rem 0 2rem;
+    }
+    .cta-tag {
+      display: inline-block;
+      font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+      font-weight: 500; color: var(--green-600); margin-bottom: 1rem;
+    }
+    .cta-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+      font-weight: 700; color: var(--green-800);
+      line-height: 1.2; margin-bottom: 0.75rem;
+    }
+    .cta-desc { font-size: 15px; color: var(--green-600); line-height: 1.65; font-weight: 300; margin-bottom: 1.75rem; }
+    .cta-includes {
+      display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    .cta-item { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--green-600); font-weight: 400; }
+    .cta-check { color: var(--green-400); font-size: 15px; }
+    .btn-dark {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: var(--green-800); color: #fff;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px; font-weight: 500;
+      padding: 15px 36px; border-radius: 4px;
+      border: none; cursor: pointer; text-decoration: none;
+      transition: background 0.18s;
+    }
+    .btn-dark:hover { background: var(--green-900); }
+    .cta-nospam { font-size: 12px; color: var(--green-600); margin-top: 0.8rem; opacity: 0.65; }
+
+    /* FOOTER */
+    footer {
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 12px; color: var(--text-secondary);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      .hero { grid-template-columns: 1fr; gap: 2.5rem; padding: 3rem 0 2.5rem; }
+      .pain-gain { grid-template-columns: 1fr; }
+      .services-grid { grid-template-columns: 1fr; }
+      .about-inner { grid-template-columns: 1fr; }
+      .avatar { margin: 0 auto; }
+      .cta-box { padding: 2.5rem 1.5rem; }
+      .cta-includes { flex-direction: column; align-items: center; gap: 0.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-inner">
+      <a class="nav-brand" href="#">
+        <span class="nav-dot"></span>
+        Linked by Words
+      </a>
+      <a class="nav-cta" href="YOUR_CALENDLY_LINK_HERE">Book a free call →</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="wrapper">
+    <div class="hero">
+      <div>
+        <div class="hero-eyebrow">Ghostwriting for Productivity Coaches</div>
+        <h1>Your ideas deserve <em>words that work.</em></h1>
+        <p class="hero-sub">Ghostwriting for productivity coaches who want to grow on LinkedIn, fill their inboxes, and educate their audience — without spending hours writing.</p>
+        <a class="btn-primary" href="YOUR_CALENDLY_LINK_HERE">Book a free discovery call →</a>
+        <span class="hero-note">No commitment. 30 minutes. Let's see if we're a fit.</span>
+      </div>
+      <div class="hero-services">
+        <div class="service-pill">
+          <div class="sp-icon">✍️</div>
+          <div>
+            <span class="sp-label">LinkedIn posts</span>
+            <span class="sp-sub">Thought leadership that gets noticed</span>
+          </div>
+        </div>
+        <div class="service-pill">
+          <div class="sp-icon">📬</div>
+          <div>
+            <span class="sp-label">Weekly newsletters</span>
+            <span class="sp-sub">Consistent value, zero effort from you</span>
+          </div>
+        </div>
+        <div class="service-pill">
+          <div class="sp-icon">🎓</div>
+          <div>
+            <span class="sp-label">Email courses</span>
+            <span class="sp-sub">Automated sequences that teach &amp; convert</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PAIN → GAIN -->
+  <div class="wrapper">
+    <section>
+      <div class="section-label">The problem</div>
+      <h2 class="section-title">You know what to say. Writing it is the hard part.</h2>
+      <p class="section-desc">Productivity coaches are brilliant at helping others get more done — but the irony is real. Writing consistently takes time you simply don't have.</p>
+      <div class="pain-gain">
+        <div class="pain-card">
+          <div class="pg-heading">Without a ghostwriter</div>
+          <div class="pg-row"><span class="pg-icon">✗</span> Staring at a blank LinkedIn draft for 45 minutes</div>
+          <div class="pg-row"><span class="pg-icon">✗</span> Newsletter goes out late — again</div>
+          <div class="pg-row"><span class="pg-icon">✗</span> Email course idea stuck in your notes app</div>
+          <div class="pg-row"><span class="pg-icon">✗</span> Posting inconsistently, losing momentum</div>
+        </div>
+        <div class="gain-card">
+          <div class="pg-heading">With Linked by Words</div>
+          <div class="pg-row"><span class="pg-icon">✓</span> Posts ready every week — in your voice</div>
+          <div class="pg-row"><span class="pg-icon">✓</span> Newsletter drops on time, every time</div>
+          <div class="pg-row"><span class="pg-icon">✓</span> Email course built, automated, converting</div>
+          <div class="pg-row"><span class="pg-icon">✓</span> You show up consistently without the grind</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- SERVICES -->
+  <div class="wrapper">
+    <section>
+      <div class="section-label">What I write</div>
+      <h2 class="section-title">Three content streams, one ghostwriter.</h2>
+      <p class="section-desc">Everything written to sound exactly like you — capturing your frameworks, your language, your perspective.</p>
+      <div class="services-grid">
+        <div class="svc-card">
+          <div class="svc-num">01</div>
+          <div class="svc-name">LinkedIn posts</div>
+          <p class="svc-desc">Hooks that stop the scroll. Ideas that position you as the go-to productivity coach in your niche.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">02</div>
+          <div class="svc-name">Weekly newsletters</div>
+          <p class="svc-desc">Consistent, valuable issues that deepen trust with your list and keep you top of mind every week.</p>
+        </div>
+        <div class="svc-card">
+          <div class="svc-num">03</div>
+          <div class="svc-name">Email courses</div>
+          <p class="svc-desc">Sequenced educational emails that showcase your expertise and warm up leads on autopilot.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="wrapper">
+    <section>
+      <div class="section-label">The process</div>
+      <h2 class="section-title">Simple, structured, zero friction.</h2>
+      <p class="section-desc">You share your ideas — I do the rest. Here's what working together looks like.</p>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>
+            <div class="step-title">Discovery call (free)</div>
+            <p class="step-desc">We talk about your goals, audience, and what content you need. I learn your voice, your frameworks, and what success looks like for you.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>
+            <div class="step-title">Voice &amp; strategy alignment</div>
+            <p class="step-desc">I study your existing content, do a deep-dive call, and build a simple content brief that captures your tone and messaging pillars.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>
+            <div class="step-title">I write, you review</div>
+            <p class="step-desc">First drafts land in your inbox. You give feedback, I refine. Two revision rounds included — until it sounds exactly like you.</p>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>
+            <div class="step-title">Publish &amp; repeat</div>
+            <p class="step-desc">You post, send, or schedule — content flows consistently, your audience grows, and you focus on coaching.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ABOUT -->
+  <div class="wrapper">
+    <section>
+      <div class="section-label">About</div>
+      <h2 class="section-title">Hi, I'm Suhas.</h2>
+      <div class="about-inner">
+        <div class="avatar">SS</div>
+        <div>
+          <div class="about-name">Suhas Sajjan</div>
+          <div class="about-role">Ghostwriter for productivity coaches · Linked by Words</div>
+          <p class="about-bio">I help productivity coaches turn their expertise into compelling content — LinkedIn posts that build authority, newsletters that nurture, and email courses that convert. My focus is one thing: writing that sounds exactly like you, so your audience never knows I exist. If you have ideas but no time to write them, that's exactly where I come in.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- CTA BOX -->
+  <div class="wrapper">
+    <div class="cta-box">
+      <span class="cta-tag">Free discovery call</span>
+      <h2 class="cta-title">Let your ideas reach the people who need them.</h2>
+      <p class="cta-desc">30 minutes. No pitch. Just a real conversation about your content and how I can help.</p>
+      <div class="cta-includes">
+        <div class="cta-item"><span class="cta-check">✓</span> Zero obligation</div>
+        <div class="cta-item"><span class="cta-check">✓</span> Honest fit assessment</div>
+        <div class="cta-item"><span class="cta-check">✓</span> Content ideas you can use immediately</div>
+      </div>
+      <a class="btn-dark" href="YOUR_CALENDLY_LINK_HERE">Book your free call →</a>
+      <p class="cta-nospam">No spam. No pushy sales calls. Just a conversation.</p>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2026 Linked by Words · Suhas Sajjan · All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
